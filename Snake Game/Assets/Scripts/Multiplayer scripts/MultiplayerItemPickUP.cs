@@ -32,7 +32,8 @@ public class MultiplayerItemPickUP : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        _script=collision.gameObject.GetComponent<Snake_logic>();
+        _script = collision.gameObject.GetComponentInParent<Snake_logic>();
+        //_script=collision.gameObject.getPeGetComponent<Snake_logic>();
         if (_script != null)
         {
             switch ((int)itemChoice)

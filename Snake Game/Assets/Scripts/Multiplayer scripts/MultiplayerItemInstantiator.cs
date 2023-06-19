@@ -22,49 +22,44 @@ public class MultiplayerItemInstantiator : MonoBehaviour
 
     //timers for spawning the items;
     private float _foodTimer = 0;
-    private float _powerTimer = 0;
+
     private bool _foodTimerOn = true;
-    private bool _powerTimerOn = false;
+
 
     //spawn times should be changable
     public float foodSpawnTimer = 2.0f;
     public float powerSpawnTimer = 2.0f;
 
     //handle for getting the Snake logic script to make sure the powerups do not spawn on it.
-    private Snake_logic _snakeLogicscript;
+    private Snake_logic _snakeLogicscript1;
+    private Snake_logic _snakeLogicscript2;
 
     //Coroutine timer
     public float timer = 5.0f;
 
     private void Start()
     {
-        _snakeLogicscript = GameObject.FindGameObjectWithTag("SnakeScript").GetComponent<Snake_logic>();
-        if (_snakeLogicscript == null)
+        _snakeLogicscript1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<Snake_logic>();
+        _snakeLogicscript2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Snake_logic>();
+        if (_snakeLogicscript1 == null)
         {
             Debug.Log("Could not get snake logic script component");
         }
     }
     private void Update()
     {
-        if (_snakeLogicscript.currentState == playstate.inplay)
+        if (_snakeLogicscript1.currentState == playstate.inplay)
         {
             if (!_foodSpawned)
             {
                 _foodSpawned = true;
 
             }
-            if (!_powerUpSpawned)
-            {
-                _powerUpSpawned = true;
-            }
             if (_foodTimerOn)
             {
                 _foodTimer += Time.deltaTime;
             }
-            if (_powerTimerOn)
-            {
-                _powerTimer += Time.deltaTime;
-            }
+            
             if (_foodTimer > foodSpawnTimer)
             {
                 int SpawnRatio = Random.Range(0, 20);
@@ -74,14 +69,7 @@ public class MultiplayerItemInstantiator : MonoBehaviour
                 Debug.Log("Coroutine for food started");
                 _foodTimer = 0;
             }
-            if (_powerTimer > powerSpawnTimer)
-            {
-                int rng = Random.Range(0, 3);
-                _powerTimerOn = false;
-                StartCoroutine(_spawnItem(powerup[rng], itemType.powerUp));
-                Debug.Log("Coroutine for powerup started");
-                _powerTimer = 0;
-            }
+            
         }
     }
 
@@ -92,7 +80,7 @@ public class MultiplayerItemInstantiator : MonoBehaviour
         Debug.Log("Inside Coroutine");
         while (Flag)
         {
-            Pos = new Vector2(Random.Range(_snakeLogicscript.leftBound, _snakeLogicscript.rightBound), Random.Range(_snakeLogicscript.lowerBound, _snakeLogicscript.upperBound));
+            Pos = new Vector2(Random.Range(_snakeLogicscript1.leftBound, _snakeLogicscript1.rightBound), Random.Range(_snakeLogicscript1.lowerBound, _snakeLogicscript1.upperBound));
             Debug.Log(Pos);
             if (_returnValidPosition(Pos))
             {
@@ -107,10 +95,6 @@ public class MultiplayerItemInstantiator : MonoBehaviour
         {
             _foodTimerOn = true;
         }
-        if (Item == itemType.powerUp)
-        {
-            _powerTimerOn = true;
-        }
 
         yield return null;
     }
@@ -118,10 +102,18 @@ public class MultiplayerItemInstantiator : MonoBehaviour
     private bool _returnValidPosition(Vector2 Pos)
     {
         bool BrokenLoop = false;
-        Vector2[] SnakePos = _snakeLogicscript.returnSnakeLocation();
+        Vector2[] SnakePos = _snakeLogicscript1.returnSnakeLocation();
+        Vector2[] SnakePos2=_snakeLogicscript2.returnSnakeLocation();
         for (int I = 0; I < SnakePos.Length; I++)
         {
             if (SnakePos[I] == Pos)
+            {
+                BrokenLoop = true; break;
+            }
+        }
+        for (int I = 0; I < SnakePos2.Length; I++)
+        {
+            if (SnakePos2[I] == Pos)
             {
                 BrokenLoop = true; break;
             }
