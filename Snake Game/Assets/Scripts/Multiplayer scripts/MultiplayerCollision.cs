@@ -50,12 +50,14 @@ public class MultiplayerCollision : MonoBehaviour
                 _player1.currentState = playstate.end;
                 _player2.currentState = playstate.end;
                 _end = true;
+                PlayerPrefs.SetString("Winner","Player2");
             }
             else if (Snake2Death)
             {
                 _player1.currentState = playstate.end;
                 _player2.currentState = playstate.end;
                 _end = true;
+                PlayerPrefs.SetString("Winner", "Player1");
             }
         }
     }

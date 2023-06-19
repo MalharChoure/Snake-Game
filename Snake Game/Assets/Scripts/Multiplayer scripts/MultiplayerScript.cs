@@ -19,5 +19,4 @@ public class MultiplayerScript : MonoBehaviour
         player2.bodyTransform = player2_logic;
         player2.currentPlayer = players.player2;
     }
-    // Start is called before the first frame update
 }
