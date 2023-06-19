@@ -199,6 +199,10 @@ public class Snake_logic : MonoBehaviour
                 _collision = false;
                 currentState = playstate.end;
             }
+            if(currentState==playstate.end)
+            {
+                _collision= true;
+            }
         }
         _playerInput();
     }

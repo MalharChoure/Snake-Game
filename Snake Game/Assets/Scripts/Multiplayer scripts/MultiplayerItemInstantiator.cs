@@ -66,7 +66,7 @@ public class MultiplayerItemInstantiator : MonoBehaviour
                 int rng = SpawnRatio > 3 ? 1 : 0;//Random.Range(0, 2);
                 _foodTimerOn = false;
                 StartCoroutine(_spawnItem(food[rng], itemType.food));
-                Debug.Log("Coroutine for food started");
+                //Debug.Log("Coroutine for food started");
                 _foodTimer = 0;
             }
             
@@ -77,11 +77,11 @@ public class MultiplayerItemInstantiator : MonoBehaviour
     {
         bool Flag = true;
         Vector2 Pos = new Vector2(0, 0);
-        Debug.Log("Inside Coroutine");
+        //Debug.Log("Inside Coroutine");
         while (Flag)
         {
             Pos = new Vector2(Random.Range(_snakeLogicscript1.leftBound, _snakeLogicscript1.rightBound), Random.Range(_snakeLogicscript1.lowerBound, _snakeLogicscript1.upperBound));
-            Debug.Log(Pos);
+            //Debug.Log(Pos);
             if (_returnValidPosition(Pos))
             {
                 Flag = false;
@@ -90,7 +90,7 @@ public class MultiplayerItemInstantiator : MonoBehaviour
         }
         Instantiate(Obj, Pos, Quaternion.identity);
         yield return new WaitForSeconds(timer);
-        Debug.Log("After Delay");
+        //Debug.Log("After Delay");
         if (Item == itemType.food)
         {
             _foodTimerOn = true;
