@@ -26,5 +26,11 @@ public class ScoreScript : MonoBehaviour
     {
         _scoreText += Increase;
         _scoreHandler.text = "Score: " + _scoreText;
+        int Highscore = PlayerPrefs.GetInt("Highscore");
+        if(Highscore<_scoreText)
+        {
+            PlayerPrefs.SetInt("Highscore",_scoreText);
+        }
+        PlayerPrefs.SetInt("Score", _scoreText);
     }
 }

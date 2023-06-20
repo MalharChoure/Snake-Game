@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Snake_logic : MonoBehaviour
 {
@@ -197,7 +198,10 @@ public class Snake_logic : MonoBehaviour
             {
                 _tailPointer = -1;
                 _collision = false;
+                //layerPrefs.GetInt("Highscore");
                 currentState = playstate.end;
+                _endGame();
+
             }
             if(currentState==playstate.end)
             {
@@ -283,6 +287,19 @@ public class Snake_logic : MonoBehaviour
                 _addTail = true;
             }*/
             
+        }
+    }
+
+    private void _endGame()
+    {
+        string scene=SceneManager.GetActiveScene().name;
+        if(scene=="SinglePlayer")
+        {
+            SceneManager.LoadScene("SinglePlayer End");
+        }
+        else
+        {
+            SceneManager.LoadScene("MultiplayerEnd");
         }
     }
 
