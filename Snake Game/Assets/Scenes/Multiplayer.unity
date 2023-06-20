@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 303222456}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -346,6 +346,7 @@ MonoBehaviour:
   player1_logic: {fileID: 303222455}
   player2_logic: {fileID: 1363238663}
   snakeBody: {fileID: 7913224109775222384, guid: 4df21749d217ee94aa215b247486db42, type: 3}
+  snakeBody2: {fileID: 7913224109775222384, guid: d2a2ebcceb0f1014bb8439bdb1835793, type: 3}
 --- !u!4 &916114210
 Transform:
   m_ObjectHideFlags: 0
@@ -588,7 +589,7 @@ GameObject:
   - component: {fileID: 1363238664}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,6 +619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1893910649}
   - component: {fileID: 1893910648}
+  - component: {fileID: 1893910650}
   m_Layer: 0
   m_Name: ItemSpawner
   m_TagString: Untagged
@@ -632,7 +634,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893910647}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a58baf0c16e7c9a419fb544e94e45735, type: 3}
   m_Name: 
@@ -662,6 +664,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1893910650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893910647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43e5ae949e29cf409da90e81aafd4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food:
+  - {fileID: 669565300193634945, guid: 1442b8f12bdcd2741997d2572619c873, type: 3}
+  - {fileID: 8081377134157632443, guid: 3531e1489dd3bfb43bc1916ba9d3c4e6, type: 3}
+  powerup:
+  - {fileID: 5560403017417736310, guid: 94cdf2e6bb2b98845842f3e49cfd027c, type: 3}
+  - {fileID: 7405164194556139998, guid: a75be78b4195aae4ab07bc7ba71ecdc9, type: 3}
+  - {fileID: 5965514150565817501, guid: b4dfbc222e7934f47a1262d481d4d72e, type: 3}
+  foodSpawnTimer: 2
+  powerSpawnTimer: 8
+  timer: 5
 --- !u!1 &2036177819
 GameObject:
   m_ObjectHideFlags: 0
